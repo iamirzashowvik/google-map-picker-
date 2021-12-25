@@ -188,7 +188,7 @@ class _PlacePickerState extends State<PlacePicker> {
     //             widget.useCurrentLocation = true;
     //           })
     //         });
-    _moveToCurrentPosition();
+    gg();
   }
 
   @override
@@ -400,6 +400,17 @@ class _PlacePickerState extends State<PlacePicker> {
           }
         },
       );
+    }
+  }
+
+  gg() async {
+    if (provider!.isOnUpdateLocationCooldown == false) {
+      provider!.isOnUpdateLocationCooldown = true;
+      Timer(Duration(seconds: widget.myLocationButtonCooldown), () {
+        provider!.isOnUpdateLocationCooldown = false;
+      });
+      await provider!.updateCurrentLocation(widget.forceAndroidLocationManager);
+      await _moveToCurrentPosition();
     }
   }
 
