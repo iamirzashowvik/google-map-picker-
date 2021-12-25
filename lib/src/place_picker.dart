@@ -182,7 +182,7 @@ class _PlacePickerState extends State<PlacePicker> {
 
     _futureProvider = _initPlaceProvider();
     Future.delayed(
-        const Duration(microseconds: 50),
+        const Duration(microseconds: 1500),
         () => {
               setState(() {
                 widget.useCurrentLocation = true;
